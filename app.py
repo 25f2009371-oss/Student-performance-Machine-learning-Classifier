@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import os
-import kagglehub
 import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
@@ -15,13 +14,8 @@ st.set_page_config(page_title="Student Performance model")
 st.title("Student Performance model")
 st.write("Predict if a student performance is High, Average or Low")
 
-@st.cache_data
-def load_data():
-    path=kagglehub.dataset_download("aljarah/xAPI-Edu-Data")
-    file_path=os.path.join(path,"xAPI-Edu-Data.csv")
-    return pd.read_csv(file_path)
 
-df=load_data()
+df=pd.read_csv("xAPI-Edu-Data.csv")
 
 X=df.drop("Class",axis=1)
 y=df["Class"]
